@@ -1,0 +1,207 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    overflow: hidden;
+    perspective: 1500px;
+    cursor: none;
+}
+
+#gameArea {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+#player {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #0f0;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    border-radius: 50%;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 1), 0 0 40px rgba(0, 255, 0, 0.5) inset;
+    transform: translateZ(0);
+    animation: playerWalk 0.5s infinite alternate, playerGlow 1s infinite alternate;
+}
+
+#gun {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 40px;
+    color: #f00;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 1), 0 0 40px rgba(255, 0, 0, 0.5) inset;
+    transform: translateZ(0);
+    animation: gunAim 1s infinite, gunPulse 1s infinite;
+}
+
+#hpPotion {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 30px;
+    color: #0f0;
+    display: none;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 1), 0 0 40px rgba(0, 255, 0, 0.5) inset;
+    animation: potionGlow 1.5s infinite alternate, potionPulse 1s infinite;
+}
+
+.zombie {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    color: #f00;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 1), 0 0 40px rgba(255, 0, 0, 0.5) inset;
+    transform: translateZ(0);
+    animation: zombieWalk 1s infinite, zombiePulse 1s infinite;
+}
+
+.bullet {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff0;
+    text-align: center;
+    line-height: 10px;
+    font-size: 24px;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 1), 0 0 30px rgba(255, 255, 0, 0.5) inset;
+    animation: bulletMove 0.1s linear;
+}
+
+#score, #stopwatch, #hp {
+    position: absolute;
+    top: 10px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+#score {
+    left: 10px;
+}
+
+#stopwatch {
+    right: 10px;
+}
+
+#hp {
+    right: 10px;
+    top: 40px;
+}
+
+#deathScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+    animation: fadeIn 1s;
+}
+
+#deathScreen h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+#restartBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #f00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 1);
+    transition: background 0.3s;
+}
+
+#restartBtn:hover {
+    background: #c00;
+}
+
+@keyframes playerWalk {
+    from { transform: translateZ(0) rotateY(0); }
+    to { transform: translateZ(0) rotateY(15deg); }
+}
+
+@keyframes playerGlow {
+    from { box-shadow: 0 0 25px rgba(0, 255, 0, 1), 0 0 40px rgba(0, 255, 0, 0.5) inset; }
+    to { box-shadow: 0 0 35px rgba(0, 255, 0, 1.5), 0 0 50px rgba(0, 255, 0, 0.5) inset; }
+}
+
+@keyframes gunAim {
+    0% { transform: rotate(0); }
+    50% { transform: rotate(15deg); }
+    100% { transform: rotate(0); }
+}
+
+@keyframes gunPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes potionGlow {
+    from { box-shadow: 0 0 25px rgba(0, 255, 0, 1), 0 0 40px rgba(0, 255, 0, 0.5) inset; }
+    to { box-shadow: 0 0 35px rgba(0, 255, 0, 1.5), 0 0 50px rgba(0, 255, 0, 0.5) inset; }
+}
+
+@keyframes potionPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes zombieWalk {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes zombiePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bulletMove {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.5); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(2); opacity: 0.5; }
+    100% { transform: scale(5); opacity: 0; }
+}
+
+#player.explode {
+    animation: explode 0.5s forwards;
+    box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 100px rgba(255, 0, 0, 0.5) inset;
+}
