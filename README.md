@@ -1,5 +1,9 @@
-## these project is all written in vanila html,css,js, no framework is integrated.
+## Project Overview
 
-*these project is completed.*
+These projects are crafted using vanilla HTML, CSS, and JavaScript, with no frameworks integrated.
 
-**project theme is zombie apocalypse.**
+**Project Status:** Completed
+
+**Theme:** Zombie Apocalypse
+
+**Purpose:** Primarily for personal training and skill development.
